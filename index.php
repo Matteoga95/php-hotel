@@ -40,6 +40,13 @@ $hotels = [
 
 ];
 
+if ($_GET['parcheggio'] == "on") {
+    $parcheggio = true;
+} else {
+    $parcheggio = false;
+}
+
+// var_dump($parcheggio);
 ?>
 
 <!DOCTYPE html>
@@ -56,9 +63,23 @@ $hotels = [
 
 <body>
 
-    <div class="container my-5 ">
+    <div class=" m-5 p-5 ">
 
         <h1>Hotels Review System</h1>
+
+        <form action="index.php" method="get">
+            <div class="mb-3">
+
+                <input type="checkbox" name="parcheggio" id="parcheggio" aria-describeby="parcheggioHelper">
+                <small id="parcheggioHelper" class="text-muted fs-5">Con Parcheggio</small>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+
+        </form>
+
+
+
         <div class="row my-5">
             <div class="col">
                 <h3>Nome</h3>
@@ -76,7 +97,13 @@ $hotels = [
                 <h3>Distanza dal centro</h3>
             </div>
         </div>
-        <?php foreach ($hotels as $hot) { ?>
+        <?php foreach ($hotels as $hot) {
+            // var_dump($hot["parking"]);
+            //  <!-- se parchegio on faccio vedere tutto solo se  -->
+            if ($parcheggio == "true") {
+
+                if ($hot["parking"]) { ?>
+
 
         <div class="row">
             <div class="col">
@@ -86,7 +113,7 @@ $hotels = [
                 <h3><?= $hot["description"] ?></h3>
             </div>
             <div class="col">
-                <h3><?= $hot["parking"] ?></h3>
+                <h3>sì</h3>
             </div>
             <div class="col">
                 <h3><?= $hot["vote"] ?></h3>
@@ -95,7 +122,35 @@ $hotels = [
                 <h3> <?= $hot["distance_to_center"] ?></h3>
             </div>
         </div>
-        <?php } ?>
+
+        <?php }
+            } else { ?>
+
+        <div class="row">
+            <div class="col">
+                <h3><?= $hot["name"] ?></h3>
+            </div>
+            <div class="col">
+                <h3><?= $hot["description"] ?></h3>
+            </div>
+            <div class="col">
+                <?php if ($hot["parking"]) { ?>
+                <h3>Sì</h3>
+                <?php } else { ?>
+                <h3>No</h3>
+                <?php }  ?>
+            </div>
+            <div class="col">
+                <h3><?= $hot["vote"] ?></h3>
+            </div>
+            <div class="col">
+                <h3> <?= $hot["distance_to_center"] ?></h3>
+            </div>
+        </div>
+
+        <?php }
+        } ?>
+
 
     </div>
 
