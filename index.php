@@ -40,7 +40,6 @@ $hotels = [
 
 ];
 
-var_dump($hotels);
 ?>
 
 <!DOCTYPE html>
@@ -51,17 +50,56 @@ var_dump($hotels);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>php-hotel</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 </head>
 
 <body>
 
+    <div class="container my-5 ">
 
-    <?php foreach ($hotels as $hot) { ?>
+        <h1>Hotels Review System</h1>
+        <div class="row my-5">
+            <div class="col">
+                <h3>Nome</h3>
+            </div>
+            <div class="col">
+                <h3>Descrizione</h3>
+            </div>
+            <div class="col">
+                <h3>Parcheggio</h3>
+            </div>
+            <div class="col">
+                <h3>Voto</h3>
+            </div>
+            <div class="col">
+                <h3>Distanza dal centro</h3>
+            </div>
+        </div>
+        <?php foreach ($hotels as $hot) { ?>
 
-    <h1> <?= $hot["name"] ?> - <?= $hot["description"] ?> <?= $hot["parking"] ?> - <?= $hot["vote"] ?>
-        <?= $hot["distance_to_center"] ?> </h1>
+        <div class="row">
+            <div class="col">
+                <h3><?= $hot["name"] ?></h3>
+            </div>
+            <div class="col">
+                <h3><?= $hot["description"] ?></h3>
+            </div>
+            <div class="col">
+                <h3><?= $hot["parking"] ?></h3>
+            </div>
+            <div class="col">
+                <h3><?= $hot["vote"] ?></h3>
+            </div>
+            <div class="col">
+                <h3> <?= $hot["distance_to_center"] ?></h3>
+            </div>
+        </div>
+        <?php } ?>
 
-    <?php } ?>
+    </div>
+
+
 
 
 
